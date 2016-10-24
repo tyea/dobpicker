@@ -1,33 +1,33 @@
 # jQuery DOB Picker Plugin
 
-### Introduction
+## Introduction
 
-This plugin will populate and validate (kind of) dates of birth. You'll need to include jQuery (obviously) and then pass it the IDs of the elements you want to use. See below for more details.
+This plugin will populate and (kind of) validate dates of birth. You'll need to include jQuery (obviously) and then pass it the IDs of the elements you want to use.
 
-### Requirements
+## Requirements
 
 None other than the jQuery library. I wrote and tested this with version 1.11 but I can't see a reason why other versions wouldn't also work.
 
-### Example
+## Example
 
 Here's an example:
 
-	$(document).ready(function(){
-	  $.dobPicker({
-		daySelector: '#dobday',
-		monthSelector: '#dobmonth',
-		yearSelector: '#dobyear',
-		dayDefault: 'Day',
-		monthDefault: 'Month',
-		yearDefault: 'Year',
-		minimumAge: 12,
-		maximumAge: 80
-	  });
+	$(document).ready(function() {
+		$.dobPicker({
+			daySelector: '#dobday',
+			monthSelector: '#dobmonth',
+			yearSelector: '#dobyear',
+			dayDefault: 'Day',
+			monthDefault: 'Month',
+			yearDefault: 'Year',
+			minimumAge: 12,
+			maximumAge: 80
+		});
 	});
 
 Download this repo and run the `example.html` file. That should give you a good idea how it works and how to use it.
 
-### Parameters
+## Parameters
 
 Parameters are passed through a single object when you call the method. Not all of them are required:
 
@@ -42,6 +42,6 @@ Parameters are passed through a single object when you call the method. Not all 
 
 *Note: The elements that the day, month and year selectors target must be select elements. This plugin will not work with anything else.*
 
-### Other
+## Author
 
-Written by Tom Yeadon (that's me). My website is http://www.tomyeadon.com incase you're interested. This plugin is released under the MIT license.
+Written by Tom Yeadon (that's me). My website is http://www.tomyeadon.com incase you're interested.
