@@ -25,7 +25,7 @@ Here's an example:
 		});
 	});
 
-Download this repo and run the `example.html` file. That should give you a good idea how it works and how to use it.
+Clone or download this repo and run the `example.html` file. That should give you a good idea how it works and how to use it.
 
 ## Parameters
 
