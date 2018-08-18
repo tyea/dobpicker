@@ -1,8 +1,8 @@
-# jQuery DOB Picker Plugin
+# DOB Picker
 
 ## Introduction
 
-This plugin will populate and (kind of) validate dates of birth. You'll need to include jQuery (obviously) and then pass it the IDs of the elements you want to use.
+This jQuery plugin will populate and validate dates of birth. You'll need to include jQuery and then pass the DOB picker method the IDs of the elements you want to use.
 
 ## Requirements
 
@@ -40,8 +40,8 @@ Parameters are passed through a single object when you call the method. Not all 
 * minimumAge - Minimum age that you to pick
 * maximumAge - Maximum age that you can pick
 
-*Note: The elements that the day, month and year selectors target must be select elements. This plugin will not work with anything else.*
+The elements that the day, month and year selectors target must be select elements. This plugin will not work with anything else.
 
 ## Author
 
-Written by Tom Yeadon (that's me). My website is http://www.tomyeadon.com incase you're interested.
+Written by Tom Yeadon. My website is http://www.tomyeadon.com in case you're interested.

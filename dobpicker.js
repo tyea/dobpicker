@@ -11,11 +11,11 @@ jQuery.extend({
 	dobPicker: function(params) {
 
 		// set the defaults		
-		if (typeof(params.dayDefault)==='undefined') params.dayDefault = 'Day';
-		if (typeof(params.monthDefault)==='undefined') params.monthDefault = 'Month';
-		if (typeof(params.yearDefault)==='undefined') params.yearDefault = 'Year';
-		if (typeof(params.minimumAge)==='undefined') params.minimumAge = 12;
-		if (typeof(params.maximumAge)==='undefined') params.maximumAge = 80;
+		if (typeof(params.dayDefault) === 'undefined') params.dayDefault = 'Day';
+		if (typeof(params.monthDefault) === 'undefined') params.monthDefault = 'Month';
+		if (typeof(params.yearDefault) === 'undefined') params.yearDefault = 'Year';
+		if (typeof(params.minimumAge) === 'undefined') params.minimumAge = 12;
+		if (typeof(params.maximumAge) === 'undefined') params.maximumAge = 80;
 
 		// set the default messages		
 		$(params.daySelector).append('<option value="">' + params.dayDefault + '</option>');
