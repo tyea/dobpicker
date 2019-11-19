@@ -2,11 +2,13 @@
 
 ## About
 
-DOB Picker is a jQuery plugin for populating and validating dates of birth. You'll need to include jQuery and then pass the DOB picker method the IDs of the elements you want to use.
+DOB Picker is a jQuery plugin for populating and validating dates of birth.
 
 ## Requirements
 
-None other than the jQuery library. I wrote and tested this with version 1.11 but I can't see a reason why other versions wouldn't also work.
+* jQuery
+
+I wrote and tested this with jQuery 1.11 but I can't see a reason why other versions wouldn't also work.
 
 ## Example
 
@@ -44,4 +46,4 @@ The elements that the day, month and year selectors target must be select elemen
 
 ## Author
 
-Written by Tom Yeadon. My website is http://www.tomyeadon.com in case you're interested.
+Written by Tom Yeadon in November 2014.
