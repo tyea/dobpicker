@@ -25,7 +25,7 @@ jQuery.extend({
 		var yearElement = $(params.yearSelector);
 
 		// set days
-		dayElement.append("<option value="">" + params.dayDefault + "</option>");
+		dayElement.append("<option value=\"\">" + params.dayDefault + "</option>");
 		for (var i = 1; i <= 31; i++) {
 			var day = "" + i;
 			var value = i > 9 ? "" + i : "0" + i;
@@ -47,7 +47,7 @@ jQuery.extend({
 			"November",
 			"December"
 		];
-		monthElement.append("<option value="">" + params.monthDefault + "</option>");
+		monthElement.append("<option value=\"\">" + params.monthDefault + "</option>");
 		for (var i = 1; i <= 12; i++) {
 			var month = months[i - 1];
 			var value = i > 9 ? "" + i : "0" + i;
@@ -57,8 +57,8 @@ jQuery.extend({
 		// set years
 		var now = (new Date()).getFullYear();
 		var minimum = now - params.minimumAge;
-		var maximum = start - params.maximumAge;
-		yearElement.append("<option value="">" + params.yearDefault + "</option>");
+		var maximum = minimum - params.maximumAge;
+		yearElement.append("<option value=\"\">" + params.yearDefault + "</option>");
 		for (i = minimum; i >= maximum; i--) {
 			var year = "" + i;
 			var value = year;
@@ -101,10 +101,12 @@ jQuery.extend({
 
 			if (day == 29 && month == 2) {
 				yearElement.find("option").each(function (index, value) {
-					if (index == 0) {
-						continue;
-					} else if (year % 4 == 0) {
-						$(this).attr("disabled", "disabled");
+					if (index > 0) {
+						var option = $(value);
+						var year = parseInt(option.attr("value"));
+						if (year % 4 == 0) {
+							option.attr("disabled", "disabled");
+						}
 					}
 				});
 			}
