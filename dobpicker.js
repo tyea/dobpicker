@@ -1,38 +1,38 @@
-/**
- * jQuery DOB Picker
- * Website: https://github.com/tyea/dobpicker
- * Version: 1.0
- * Author: Tom Yeadon
- * License: BSD 3-Clause
- */
-
 jQuery.extend({
 
-	dobPicker: function(params) {
+	dobPicker: function (params) {
 
-		// set the defaults		
-		if (typeof(params.dayDefault) === 'undefined') params.dayDefault = 'Day';
-		if (typeof(params.monthDefault) === 'undefined') params.monthDefault = 'Month';
-		if (typeof(params.yearDefault) === 'undefined') params.yearDefault = 'Year';
-		if (typeof(params.minimumAge) === 'undefined') params.minimumAge = 12;
-		if (typeof(params.maximumAge) === 'undefined') params.maximumAge = 80;
-
-		// set the default messages		
-		$(params.daySelector).append('<option value="">' + params.dayDefault + '</option>');
-		$(params.monthSelector).append('<option value="">' + params.monthDefault + '</option>');
-		$(params.yearSelector).append('<option value="">' + params.yearDefault + '</option>');
-
-		// populate the day select
-		for (i = 1; i <= 31; i++) {
-			if (i <= 9) {
-				var val = '0' + i;
-			} else {
-				var val = i;
-			}
-			$(params.daySelector).append('<option value="' + val + '">' + i + '</option>');
+		// apply defaults
+		if (typeof(params.dayDefault) == "undefined") {
+			params.dayDefault = "Day";
+		}
+		if (typeof(params.monthDefault) == "undefined"){
+			params.monthDefault = "Month";
+		}
+		if (typeof(params.yearDefault) == "undefined") {
+			params.yearDefault = "Year";
+		}
+		if (typeof(params.minimumAge) == "undefined") {
+			params.minimumAge = 18;
+		}
+		if (typeof(params.maximumAge) == "undefined") {
+			params.maximumAge = 100;
 		}
 
-		// populate the month select		
+		// find elements
+		var dayElement = $(params.daySelector);
+		var monthElement = $(params.monthSelector);
+		var yearElement = $(params.yearSelector);
+
+		// set days
+		dayElement.append("<option value="">" + params.dayDefault + "</option>");
+		for (var i = 1; i <= 31; i++) {
+			var day = "" + i;
+			var value = i > 9 ? "" + i : "0" + i;
+			dayElement.append("<option value=\"" + value + "\">" + day + "</option>");
+		}
+
+		// set months
 		var months = [
 			"January",
 			"February",
@@ -47,77 +47,70 @@ jQuery.extend({
 			"November",
 			"December"
 		];
-			
-		for (i = 1; i <= 12; i++) {
-			if (i <= 9) {
-				var val = '0' + i;
-			} else {
-				var val = i;
-			}
-			$(params.monthSelector).append('<option value="' + val + '">' + months[i - 1] + '</option>');
+		monthElement.append("<option value="">" + params.monthDefault + "</option>");
+		for (var i = 1; i <= 12; i++) {
+			var month = months[i - 1];
+			var value = i > 9 ? "" + i : "0" + i;
+			monthElement.append("<option value=\"" + value + "\">" + month + "</option>");
 		}
 
-		// populate the year select
-		var date = new Date();
-		var year = date.getFullYear();
-		var start = year - params.minimumAge;
-		var count = start - params.maximumAge;
-		
-		for (i = start; i >= count; i--) {
-			$(params.yearSelector).append('<option value="' + i + '">' + i + '</option>');
+		// set years
+		var now = (new Date()).getFullYear();
+		var minimum = now - params.minimumAge;
+		var maximum = start - params.maximumAge;
+		yearElement.append("<option value="">" + params.yearDefault + "</option>");
+		for (i = minimum; i >= maximum; i--) {
+			var year = "" + i;
+			var value = year;
+			yearElement.append("<option value=\"" + value + "\">" + year + "</option>");
 		}
-		
-		// do the logic for the day select
-		$(params.daySelector).change(function() {
-			
-			$(params.monthSelector)[0].selectedIndex = 0;
-			$(params.yearSelector)[0].selectedIndex = 0;
-			$(params.yearSelector + ' option').removeAttr('disabled');
-			
-			if ($(params.daySelector).val() >= 1 && $(params.daySelector).val() <= 29) {
-			
-				$(params.monthSelector + ' option').removeAttr('disabled');
-				
-			} else if ($(params.daySelector).val() == 30) {
-			
-				$(params.monthSelector + ' option').removeAttr('disabled');
-				$(params.monthSelector + ' option[value="02"]').attr('disabled', 'disabled');
-				
-			} else if($(params.daySelector).val() == 31) {
-			
-				$(params.monthSelector + ' option').removeAttr('disabled');
-				$(params.monthSelector + ' option[value="02"]').attr('disabled', 'disabled');
-				$(params.monthSelector + ' option[value="04"]').attr('disabled', 'disabled');
-				$(params.monthSelector + ' option[value="06"]').attr('disabled', 'disabled');
-				$(params.monthSelector + ' option[value="09"]').attr('disabled', 'disabled');
-				$(params.monthSelector + ' option[value="11"]').attr('disabled', 'disabled');
-				
+
+		// disable months
+		dayElement.change(function () {
+
+			monthElement.selectedIndex = 0;
+			yearElement.selectedIndex = 0;
+			yearElement.find("option").removeAttr("disabled");
+
+			var day = parseInt(dayElement.val());
+
+			if (day >= 1 && day <= 29) {
+				monthElement.find("option").removeAttr("disabled");
+			} else if (day == 30) {
+				monthElement.find("option").removeAttr("disabled");
+				monthElement.find("option[value=\"02\"]").attr("disabled", "disabled");
+			} else if(day == 31) {
+				monthElement.find("option").removeAttr("disabled");
+				monthElement.find("option[value=\"02\"]").attr("disabled", "disabled");
+				monthElement.find("option[value=\"04\"]").attr("disabled", "disabled");
+				monthElement.find("option[value=\"06\"]").attr("disabled", "disabled");
+				monthElement.find("option[value=\"09\"]").attr("disabled", "disabled");
+				monthElement.find("option[value=\"11\"]").attr("disabled", "disabled");
 			}
-			
+
 		});
-		
-		// do the logic for the month select
-		$(params.monthSelector).change(function() {
-			
-			$(params.yearSelector)[0].selectedIndex = 0;
-			$(params.yearSelector + ' option').removeAttr('disabled');
-			
-			if ($(params.daySelector).val() == 29 && $(params.monthSelector).val() == '02') {
-			
-				$(params.yearSelector + ' option').each(function(index) {
-					if (index !== 0) {
-						var year = $(this).attr('value');
-						var leap = !((year % 4) || (!(year % 100) && (year % 400)));
-						if (leap === false) {
-							$(this).attr('disabled', 'disabled');
-						}
+
+		// disable years
+		monthElement.change(function () {
+
+			yearElement.selectedIndex = 0;
+			yearElement.find("option").removeAttr("disabled");
+
+			var day = parseInt(dayElement.val());
+			var month = parseInt(monthElement.val());
+
+			if (day == 29 && month == 2) {
+				yearElement.find("option").each(function (index, value) {
+					if (index == 0) {
+						continue;
+					} else if (year % 4 == 0) {
+						$(this).attr("disabled", "disabled");
 					}
 				});
-				
 			}
-			
+
 		});
-		
+
 	}
-	
+
 });

@@ -1,0 +1,12 @@
+{
+	"name": "dobpicker",
+	"description": "A jQuery plugin for populating and validating dates of birth",
+	"version": "1.0.0",
+	"license": "BSD-3-Clause",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tyea/dobpicker.git"
+	},
+	"author": "Tom Yeadon <tg@tomyeadon.com>",
+	"homepage": "https://github.com/tyea/dobpicker"
+}
